@@ -10,6 +10,89 @@
   <meta property="og:type" content="website">
   
   <style>
+
+/* ============================================================================
+       FOUNDER WALL BADGE SYSTEM — HIGH-END METAL-INLAID TOKENS
+       ============================================================================ */
+    .backer-badge-pill {
+      font-size: 0.7rem;
+      font-weight: 900;
+      padding: 6px 12px;
+      border-radius: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      /* SKEUOMORPHIC METAL DEPTH */
+      box-shadow: 
+        inset 0 1px 1px rgba(255, 255, 255, 0.4), /* Top Highlight */
+        inset 0 -2px 3px rgba(0, 0, 0, 0.3),     /* Bottom Shadow */
+        0 3px 6px rgba(0, 0, 0, 0.5);           /* Outer Drop Shadow */
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      position: relative;
+      overflow: hidden;
+      /* High contrast text with slight deboss */
+      text-shadow: 0 1px 1px rgba(0,0,0,0.5);
+      display: inline-block;
+      text-align: center;
+    }
+
+    /* METALLIC FINISHES WITH COLOR INLAY */
+
+    /* RIDER ELITE — Pinned Top Tier */
+    /* Brushed Steel Base + Electric Cyan Inlay + Subtle Blue Glow */
+    .badge-rider { 
+      background: 
+        linear-gradient(145deg, #64748b 0%, #475569 40%, #334155 60%, #1e293b 100%), /* Brushed Metal Stack */
+        radial-gradient(circle at 50% -20%, rgba(56, 189, 248, 0.7) 0%, transparent 70%); /* Cyan Shine */
+      border-color: #38bdf8;
+      color: #e0f2fe; 
+      box-shadow: 
+        inset 0 1px 1px rgba(255, 255, 255, 0.4),
+        inset 0 -2px 3px rgba(0, 0, 0, 0.3),
+        0 0 10px rgba(56, 189, 248, 0.5), /* Subtle Cyan Halo */
+        0 3px 6px rgba(0, 0, 0, 0.5);
+    }
+
+    /* DIAMOND VIP — $100+ */
+    /* Blackened Steel Base + Deep Purple Inlay */
+    .badge-diamond { 
+      background: 
+        linear-gradient(145deg, #334155 0%, #1e293b 40%, #0f172a 60%, #020617 100%),
+        radial-gradient(circle at 50% -20%, rgba(168, 85, 247, 0.7) 0%, transparent 70%);
+      border-color: #c084fc;
+      color: #f3e8ff;
+    }
+
+    /* GOLD FOUNDER — $50-$99 */
+    /* Gunmetal Base + Premium Gold Inlay */
+    .badge-gold { 
+      background: 
+        linear-gradient(145deg, #94a3b8 0%, #64748b 40%, #475569 60%, #334155 100%),
+        radial-gradient(circle at 50% -20%, rgba(245, 158, 11, 0.7) 0%, transparent 70%);
+      border-color: #f59e0b;
+      color: #fef3c7;
+    }
+
+    /* SILVER FOUNDER — $25-$49 */
+    /* Brushed Steel Base + Silver Inlay */
+    .badge-silver { 
+      background: 
+        linear-gradient(145deg, #e2e8f0 0%, #cbd5e1 40%, #94a3b8 60%, #64748b 100%),
+        radial-gradient(circle at 50% -20%, rgba(203, 213, 225, 0.8) 0%, transparent 70%);
+      border-color: #94a3b8;
+      color: #1e293b; /* Dark text on light silver */
+      text-shadow: 0 1px 1px rgba(255,255,255,0.5);
+    }
+
+    /* BRONZE FOUNDER — $10-$24 */
+    /* Dark Steel Base + Rich Bronze Inlay */
+    .badge-bronze { 
+      background: 
+        linear-gradient(145deg, #475569 0%, #334155 40%, #1e293b 60%, #0d1526 100%),
+        radial-gradient(circle at 50% -20%, rgba(217, 119, 6, 0.7) 0%, transparent 70%);
+      border-color: #d97706;
+      color: #fffbeb;
+    }
+    
     :root {
       --bg-black: #06090e; --card-bg: rgba(13, 20, 36, 0.94); --card-border: rgba(255, 255, 255, 0.12);
       --input-bg: rgba(8, 13, 24, 0.92); --input-border: rgba(255, 255, 255, 0.18);
