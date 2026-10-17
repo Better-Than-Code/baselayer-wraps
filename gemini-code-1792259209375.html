@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BaseLayer Wraps | Style. Personalize. Protect.</title>
+  <meta name="description" content="Professional custom vehicle wraps for e-bike batteries and scooter stems. Engineered with automotive-grade 3M, Avery Dennison, and Oralite reflective vinyl in Jacksonville, Florida.">
+  <meta property="og:title" content="BaseLayer Wraps | Style. Personalize. Protect.">
+  <meta property="og:description" content="Secure your spot on the release list or claim your Founder Wall status.">
+  <meta property="og:type" content="website">
+  
+  <style>
+    :root {
+      --bg-black: #06090e; --card-bg: rgba(13, 20, 36, 0.94); --card-border: rgba(255, 255, 255, 0.12);
+      --input-bg: rgba(8, 13, 24, 0.92); --input-border: rgba(255, 255, 255, 0.18);
+      --electric-blue: #0070f3; --neon-cyan: #38bdf8; --founder-gold: #f59e0b;
+      --text-main: #ffffff; --text-muted: #94a3b8; /* Upgraded contrast for WCAG */
+      --badge-rider: #38bdf8; --badge-gold: #f59e0b; --badge-silver: #94a3b8; --badge-bronze: #d97706; --badge-diamond: #a855f7;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+    body { background-color: var(--bg-black); color: var(--text-main); font-family: -apple-system, sans-serif; min-height: 100vh; display: flex; justify-content: center; align-items: flex-start; overflow-x: hidden; background-image: radial-gradient(circle at 10% 18%, rgba(0, 112, 243, 0.28) 0%, transparent 45%), radial-gradient(circle at 92% 48%, rgba(220, 38, 38, 0.22) 0%, transparent 50%); background-attachment: fixed; }
+    .app-viewport { width: 100%; max-width: 440px; min-height: 100vh; position: relative; padding: 1.15rem 1.15rem 2rem; display: flex; flex-direction: column; overflow-x: hidden; margin: 0 auto; }
+    
+    /* HEADER */
+    .app-header { display: flex; align-items: center; justify-content: space-between; width: 100%; z-index: 50; padding-top: 0.2rem; }
+    .brand-emblem-btn { width: clamp(48px, 12vw, 56px); height: clamp(48px, 12vw, 56px); background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 12px; display: flex; align-items: center; justify-content: center; backdrop-filter: blur(12px); flex-shrink: 0; }
+    .emblem-img-nav { width: 60%; height: 60%; object-fit: contain; filter: brightness(0) invert(1); }
+    .header-center { display: flex; flex-direction: column; align-items: center; text-align: center; flex: 1; padding-right: clamp(40px, 10vw, 56px); }
+    .brand-wordmark { font-size: clamp(2.2rem, 9vw, 2.7rem); font-style: italic; line-height: 1; color: #ffffff; text-shadow: 0 2px 10px rgba(0,0,0,0.8); display: flex; align-items: baseline; justify-content: center; }
+    .brand-base { font-weight: 900; letter-spacing: -1px; }
+    .brand-layer { font-weight: 250; letter-spacing: -0.5px; opacity: 0.95; } /* Updated to 250 per brand spec */
+    .brand-wordmark sup { font-size: 0.25em; font-weight: 500; font-style: normal; top: -1.2em; margin-left: 2px; }
+    .brand-subline { font-size: clamp(0.75rem, 3vw, 0.9rem); font-weight: 800; letter-spacing: 6px; color: #cbd5e1; margin-top: 4px; text-transform: uppercase; margin-right: -6px; }
+    .brand-tagline { font-size: clamp(0.55rem, 2vw, 0.62rem); font-weight: 800; letter-spacing: 1.5px; color: var(--text-muted); margin-top: 6px; text-transform: uppercase; }
+
+    /* HERO SHOWCASE */
+    .hero-stage { position: relative; width: 100%; height: 320px; pointer-events: none; z-index: 10; margin-bottom: 10px; }
+    .hero-battery-copy { position: absolute; top: 10px; left: 0; width: 55%; z-index: 25; }
+    .title-battery { font-size: clamp(0.95rem, 4.5vw, 1.1rem); font-weight: 900; font-style: italic; line-height: 1.08; color: #ffffff; text-shadow: 0 4px 16px rgba(0,0,0,0.9); }
+    .subtitle-battery { font-size: 0.7rem; font-weight: 800; color: var(--neon-cyan); letter-spacing: 0.8px; margin-top: 3px; }
+    .hero-battery-anchor { position: absolute; top: 30px; left: -15%; width: 70%; max-width: 280px; z-index: 20; }
+    .hardware-img-fallback { width: 135%; height: auto; object-fit: contain; transform: scaleX(-1); position: absolute; top: 0; left: 0; filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.95)); z-index: 1; transition: opacity 0.3s ease; }
+    #batteryCanvas { width: 135%; height: auto; object-fit: contain; transform: scaleX(-1); position: relative; z-index: 2; display: block; filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.95)); }
+    .hero-scooter-copy { position: absolute; top: 10px; right: 0; width: 150px; z-index: 25; text-align: right; }
+    .title-scooter { font-size: clamp(0.85rem, 4vw, 1rem); font-weight: 900; font-style: italic; line-height: 1.1; color: #ffffff; text-shadow: 0 4px 14px rgba(0,0,0,0.9); }
+    .subtitle-scooter { font-size: 0.7rem; font-weight: 800; color: var(--neon-cyan); letter-spacing: 0.8px; margin-top: 3px; }
+    .hero-scooter-anchor { position: absolute; top: 30px; right: -25%; width: 65%; max-width: 260px; z-index: 15; }
+    .scooter-img-fallback { width: 85%; height: auto; object-fit: contain; position: absolute; top: 0; left: 0; filter: drop-shadow(-15px 15px 30px rgba(0, 0, 0, 0.95)); z-index: 1; transition: opacity 0.3s ease; }
+    #scooterCanvas { width: 85%; height: auto; position: relative; z-index: 2; display: block; filter: drop-shadow(-15px 15px 30px rgba(0, 0, 0, 0.95)); }
+
+    /* WAITLIST CARD */
+    .waitlist-card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 20px; padding: clamp(1rem, 5vw, 1.35rem); backdrop-filter: blur(28px) saturate(180%); box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.95); position: relative; z-index: 35; width: 100%; flex: 1 0 auto; }
+    .card-head-title { font-size: clamp(1rem, 6vw, 1.22rem); font-weight: 900; color: #ffffff; text-align: center; }
+    .card-head-sub { font-size: 0.72rem; font-weight: 700; color: var(--text-muted); text-align: center; margin: 4px 0 10px; }
+    .wall-trigger-link { font-size: 0.75rem; font-weight: 700; color: var(--neon-cyan); text-align: center; margin-bottom: 12px; display: block; text-decoration: underline; cursor: pointer; background: none; border: none; width: 100%; }
+
+    /* DYNAMIC TICKER */
+    .founder-ticker-bar { background: rgba(0, 0, 0, 0.25); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; padding: 8px 12px; display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; cursor: pointer; transition: border-color 0.2s ease; width: 100%; text-align: left; }
+    .founder-ticker-bar:hover { border-color: rgba(56, 189, 248, 0.4); }
+    .ticker-left { display: flex; align-items: center; gap: 7px; font-size: 0.72rem; font-weight: 700; color: #cbd5e1; }
+    .ticker-queue-label { font-size: 0.65rem; font-weight: 900; text-transform: uppercase; letter-spacing: 0.5px; color: var(--neon-cyan); margin-right: 2px; }
+    .ticker-pulse-dot { width: 6px; height: 6px; border-radius: 50%; background: #10b981; box-shadow: 0 0 8px #10b981; animation: pulse 1.8s infinite; }
+    .ticker-link { font-size: 0.72rem; font-weight: 800; color: var(--neon-cyan); }
+
+    /* FORMS */
+    .waitlist-form { display: flex; flex-direction: column; gap: 12px; }
+    .input-field-wrap { position: relative; width: 100%; display: flex; flex-direction: column; gap: 4px; }
+    .input-field-wrap label { font-size: 0.72rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; }
+    .input-icon-container { position: relative; width: 100%; }
+    .input-icon { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); width: 18px; height: 18px; color: var(--text-muted); pointer-events: none; z-index: 5; }
+    .form-input { width: 100%; padding: 12px 14px 12px 42px; background: var(--input-bg); border: 1px solid var(--input-border); border-radius: 10px; color: #ffffff; font-size: 0.9rem; font-weight: 500; outline: none; font-family: inherit; }
+    .form-input:focus { border-color: var(--electric-blue); box-shadow: 0 0 0 3px rgba(0, 112, 243, 0.25); }
+    select.form-input { appearance: none; -webkit-appearance: none; background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e"); background-repeat: no-repeat; background-position: right 14px center; background-size: 16px; cursor: pointer; }
+    select.form-input option { background: #0d1526; color: #ffffff; }
+    select.form-input option:disabled { color: #475569; }
+    .inline-custom-wrap { display: none; position: relative; width: 100%; margin-top: 4px; }
+    .inline-custom-wrap input { padding-right: 40px; }
+    .inline-cancel-btn { position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: none; border: none; color: var(--text-muted); font-size: 1.2rem; cursor: pointer; padding: 4px; display: flex; align-items: center; justify-content: center; }
+
+    /* SWATCH COLOR PICKER CHIPS */
+    .swatch-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin-top: 4px; }
+    .swatch-chip { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 8px 4px; background: rgba(255, 255, 255, 0.04); border: 1px solid var(--input-border); border-radius: 8px; cursor: pointer; transition: all 0.2s ease; }
+    .swatch-chip:hover { border-color: var(--neon-cyan); }
+    .swatch-chip.active { border-color: var(--electric-blue); background: rgba(0, 112, 243, 0.15); box-shadow: 0 0 10px rgba(0, 112, 243, 0.3); }
+    .swatch-circle { width: 22px; height: 22px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.3); margin-bottom: 4px; }
+    .swatch-label { font-size: 0.65rem; font-weight: 700; color: #cbd5e1; text-align: center; }
+
+    /* TIERS */
+    .tier-selection-grid { display: flex; flex-direction: column; gap: 8px; margin-top: 4px; }
+    .tier-card { background: rgba(255, 255, 255, 0.03); border: 1px solid var(--input-border); border-radius: 10px; padding: 12px; cursor: pointer; display: flex; align-items: center; gap: 12px; transition: all 0.2s ease; width: 100%; text-align: left; }
+    .tier-card.active { background: rgba(245, 158, 11, 0.08); border-color: var(--founder-gold); box-shadow: 0 0 15px rgba(245, 158, 11, 0.15); }
+    .tier-card.active-free { background: rgba(0, 112, 243, 0.08); border-color: var(--electric-blue); box-shadow: 0 0 15px rgba(0, 112, 243, 0.15); }
+    .tier-card-radio { width: 18px; height: 18px; border-radius: 50%; border: 2px solid var(--text-muted); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .tier-card.active .tier-card-radio { border-color: var(--founder-gold); }
+    .tier-card.active .tier-card-radio::after { content: ''; width: 8px; height: 8px; border-radius: 50%; background: var(--founder-gold); }
+    .tier-card.active-free .tier-card-radio { border-color: var(--electric-blue); }
+    .tier-card.active-free .tier-card-radio::after { content: ''; width: 8px; height: 8px; border-radius: 50%; background: var(--electric-blue); }
+    .tier-card-content { display: flex; flex-direction: column; }
+    .tier-card-title { font-size: 0.88rem; font-weight: 800; color: #fff; text-transform: uppercase; }
+    .tier-card-sub { font-size: 0.72rem; color: var(--text-muted); margin-top: 2px; }
+
+    /* PERKS */
+    .perks-drawer { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 10px; padding: 12px; display: none; margin-top: 4px; }
+    .perks-drawer.active-gold { border-color: rgba(245, 158, 11, 0.4); background: rgba(245, 158, 11, 0.05); }
+    .perks-list { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+    .perk-item { display: flex; align-items: flex-start; gap: 6px; font-size: 0.72rem; color: #cbd5e1; line-height: 1.3; }
+    .perk-item strong { color: #ffffff; }
+    .perk-bullet { color: var(--founder-gold); font-size: 0.85rem; line-height: 1; }
+    .amount-pills-row { display: flex; gap: 6px; margin-bottom: 8px; }
+    .amount-pill { flex: 1; padding: 8px 4px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 8px; color: #ffffff; font-size: 0.8rem; font-weight: 800; text-align: center; cursor: pointer; }
+    .amount-pill.active { background: var(--founder-gold); color: #06090e; border-color: var(--founder-gold); }
+    .wall-privacy-toggle { display: flex; align-items: center; gap: 7px; margin-top: 10px; padding: 6px 8px; background: rgba(0, 0, 0, 0.25); border-radius: 6px; font-size: 0.72rem; color: var(--text-muted); cursor: pointer; }
+    .privacy-check { width: 14px; height: 14px; border: 1px solid var(--text-muted); border-radius: 3px; display: flex; align-items: center; justify-content: center; }
+    .wall-privacy-toggle.active .privacy-check { background: var(--neon-cyan); border-color: var(--neon-cyan); }
+    .privacy-check svg { width: 10px; height: 10px; stroke: #06090e; stroke-width: 3; display: none; }
+    .wall-privacy-toggle.active .privacy-check svg { display: block; }
+
+    /* CTA & FOOTER */
+    .premium-material-tag { text-align: center; font-size: 0.7rem; font-weight: 800; color: var(--neon-cyan); text-transform: uppercase; letter-spacing: 0.8px; margin-top: 14px; margin-bottom: -4px; line-height: 1.4; }
+    .submit-cta-btn { width: 100%; padding: 14px; background: var(--electric-blue); color: #ffffff; border: none; border-radius: 10px; font-size: 0.92rem; font-weight: 800; letter-spacing: 0.5px; text-transform: uppercase; cursor: pointer; margin-top: 6px; }
+    .submit-cta-btn.founder-mode { background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: #06090e; }
+    .status-toast { display: none; text-align: center; font-size: 0.78rem; font-weight: 700; padding: 12px; border-radius: 8px; margin-top: 8px; }
+    .footer-guarantee { text-align: center; font-size: 0.68rem; font-weight: 800; letter-spacing: 1.2px; color: var(--text-muted); text-transform: uppercase; margin-top: 10px; line-height: 1.5; }
+    .app-footer { margin-top: 30px; text-align: center; font-size: 0.75rem; color: #94a3b8; } /* WCAG contrast compliant */
+    .footer-links { display: flex; justify-content: center; gap: 15px; margin-bottom: 8px; flex-wrap: wrap; }
+    .footer-links a { color: #cbd5e1; text-decoration: none; font-weight: 600; }
+    .footer-links a:hover { color: var(--electric-blue); }
+    .footer-copyright { font-size: 0.68rem; opacity: 0.85; }
+
+    /* MODALS */
+    .wall-modal-overlay { display: none; position: fixed; inset: 0; background: rgba(3, 7, 18, 0.88); backdrop-filter: blur(12px); z-index: 200; align-items: center; justify-content: center; padding: 1.2rem; }
+    .wall-modal-overlay.open { display: flex; }
+    .wall-modal-card { background: rgba(13, 20, 36, 0.98); border: 1px solid rgba(245, 158, 11, 0.35); border-radius: 20px; width: 100%; max-width: 400px; max-height: 85vh; display: flex; flex-direction: column; overflow: hidden; outline: none; }
+    .wall-modal-head { padding: 18px 20px 12px; border-bottom: 1px solid rgba(255, 255, 255, 0.1); display: flex; justify-content: space-between; align-items: center; }
+    .wall-title { font-size: 1.05rem; font-weight: 900; color: #ffffff; }
+    .wall-title span { color: var(--founder-gold); }
+    .wall-close-btn { background: none; border: none; color: #cbd5e1; font-size: 1.5rem; cursor: pointer; padding: 4px 8px; }
+    .wall-modal-body { padding: 14px 18px; overflow-y: auto; display: flex; flex-direction: column; gap: 8px; }
+    .wall-backer-card { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 10px; padding: 10px 12px; display: flex; align-items: center; justify-content: space-between; }
+    .backer-left { display: flex; align-items: center; gap: 10px; }
+    .backer-avatar { width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 0.78rem; }
+    .backer-name { font-size: 0.8rem; font-weight: 800; color: #ffffff; }
+    .backer-tier-tag { font-size: 0.68rem; font-weight: 700; color: var(--text-muted); }
+    .backer-badge-pill { font-size: 0.68rem; font-weight: 800; padding: 3px 8px; border-radius: 6px; }
+
+    .badge-rider { background: rgba(56, 189, 248, 0.15); border: 1px solid var(--badge-rider); color: var(--badge-rider); }
+    .badge-gold { background: rgba(245, 158, 11, 0.15); border: 1px solid var(--badge-gold); color: var(--badge-gold); }
+    .badge-silver { background: rgba(148, 163, 184, 0.15); border: 1px solid var(--badge-silver); color: #e2e8f0; }
+    .badge-bronze { background: rgba(217, 119, 6, 0.15); border: 1px solid var(--badge-bronze); color: #fbbf24; }
+    .badge-diamond { background: rgba(168, 85, 247, 0.15); border: 1px solid var(--badge-diamond); color: #c084fc; }
+
+    /* SUCCESS VIEW STATE */
+    .success-view { display: none; text-align: center; padding: 20px 0; }
+    .success-view h2 { font-size: 1.25rem; font-weight: 900; color: #ffffff; margin-bottom: 8px; }
+    .success-view p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.5; }
+  </style>
+
+  <!-- Privacy-friendly analytics script (Plausible or simple custom counter integration placeholder) -->
+  <script defer data-domain="baselayerwraps.com" src="https://plausible.io/js/script.js"></script>
+</head>
+<body>
+
+  <div class="app-viewport">
+    <header class="app-header">
+      <a href="#" class="brand-emblem-btn" aria-label="BaseLayer Wraps Home">
+        <img src="assets/emblem.svg" onerror="this.style.display='none';" alt="Emblem" class="emblem-img-nav">
+      </a>
+      <div class="header-center">
+        <div class="brand-wordmark"><span class="brand-base">Base</span><span class="brand-layer">Layer</span><sup>™</sup></div>
+        <div class="brand-subline">WRAPS</div>
+        <div class="brand-tagline">STYLE / PERSONALIZE / PROTECT</div>
+      </div>
+    </header>
+
+    <div class="hero-stage">
+      <section class="hero-battery-copy">
+        <h2 class="title-battery">E-BIKE<br>BATTERY WRAPS</h2>
+        <p class="subtitle-battery">CLEANER. TOUGHER. YOURS.</p>
+      </section>
+      <div class="hero-battery-anchor">
+        <img src="assets/battery-01.png" id="batteryImgFallback" class="hardware-img-fallback" alt="Battery Wrap">
+        <canvas id="batteryCanvas" aria-label="E-Bike Battery Wrap Preview" role="img"></canvas>
+      </div>
+
+      <section class="hero-scooter-copy">
+        <h3 class="title-scooter">SCOOTER<br>STEM WRAPS</h3>
+        <p class="subtitle-scooter">SAME RIDE. A BOLDER LOOK.</p>
+      </section>
+      <div class="hero-scooter-anchor">
+        <img src="assets/scooter-01.png" id="scooterImgFallback" class="scooter-img-fallback" alt="Scooter Wrap">
+        <canvas id="scooterCanvas" aria-label="Scooter Stem Wrap Preview" role="img"></canvas>
+      </div>
+    </div>
+
+    <section class="waitlist-card">
+      <div id="formContainer">
+        <h1 class="card-head-title">SECURE YOUR SPOT</h1>
+        <p class="card-head-sub">BE THE FIRST TO KNOW WHEN WE LAUNCH</p>
+        <button type="button" class="wall-trigger-link" onclick="openFounderWallModal()">✦ VIEW THE FOUNDER WALL ✦</button>
+
+        <button type="button" class="founder-ticker-bar" onclick="openFounderWallModal()" aria-label="View Founder Wall Ticker">
+          <div class="ticker-left">
+            <div class="ticker-pulse-dot" aria-hidden="true"></div>
+            <span class="ticker-queue-label">LIVE:</span>
+            <span id="tickerText"><strong>Loading...</strong></span>
+          </div>
+          <div class="ticker-link">VIEW ›</div>
+        </button>
+
+        <form class="waitlist-form" onsubmit="processSubmission(event)">
+          <div class="input-field-wrap">
+            <label for="waitlistName">Your Name</label>
+            <div class="input-icon-container">
+              <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+              <input type="text" id="waitlistName" class="form-input" placeholder="Your name (optional)" autocomplete="name">
+            </div>
+          </div>
+
+          <div class="input-field-wrap">
+            <label for="waitlistEmail">Email Address</label>
+            <div class="input-icon-container">
+              <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg>
+              <input type="email" id="waitlistEmail" class="form-input" placeholder="Your email address" required autocomplete="email">
+            </div>
+          </div>
+
+          <div class="input-field-wrap" id="rideSelectWrap">
+            <label for="rideType">Ride Type / Hardware</label>
+            <div class="input-icon-container">
+              <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="18.5" cy="17.5" r="3.5"></circle><circle cx="5.5" cy="17.5" r="3.5"></circle><circle cx="15" cy="5" r="1"></circle><path d="M12 17.5V14l-3-3 4-3 2 3h2"></path></svg>
+              <select id="rideType" class="form-input" onchange="handleHardwareNameChange()">
+                <option value="battery">E-Bike Battery Wrap</option>
+                <option value="scooter">Scooter Stem Wrap</option>
+                <option value="other">Other Ride (Tell us what you have)</option>
+                <option value="tier_full" disabled>Full Frame Restyle — Coming Soon</option>
+                <option value="tier_ppf" disabled>Surface Armor (PPF) — Coming Soon</option>
+              </select>
+            </div>
+          </div>
+          <div class="inline-custom-wrap" id="customRideWrap">
+            <label for="customRideInput">Custom Ride Make & Model</label>
+            <div class="input-icon-container">
+              <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="18.5" cy="17.5" r="3.5"></circle><circle cx="5.5" cy="17.5" r="3.5"></circle><circle cx="15" cy="5" r="1"></circle><path d="M12 17.5V14l-3-3 4-3 2 3h2"></path></svg>
+              <input type="text" id="customRideInput" class="form-input" placeholder="Enter make/model">
+              <button type="button" class="inline-cancel-btn" onclick="resetHardware()" aria-label="Cancel custom ride">&times;</button>
+            </div>
+          </div>
+
+          <!-- Color Selection via Swatch Chips -->
+          <div class="input-field-wrap">
+            <label>Preferred Colorway / Finish</label>
+            <input type="hidden" id="preferredColor" value="perfect-blue">
+            <div class="swatch-grid">
+              <div class="swatch-chip active" onclick="selectSwatch('perfect-blue', this)">
+                <div class="swatch-circle" style="background: #0070f3;"></div>
+                <span class="swatch-label">Satin Blue</span>
+              </div>
+              <div class="swatch-chip" onclick="selectSwatch('smoldering-red', this)">
+                <div class="swatch-circle" style="background: #d22828;"></div>
+                <span class="swatch-label">Satin Red</span>
+              </div>
+              <div class="swatch-chip" onclick="selectSwatch('apple-green', this)">
+                <div class="swatch-circle" style="background: #64b43c;"></div>
+                <span class="swatch-label">Apple Green</span>
+              </div>
+              <div class="swatch-chip" onclick="selectSwatch('canyon-copper', this)">
+                <div class="swatch-circle" style="background: #be5a28;"></div>
+                <span class="swatch-label">Canyon Copper</span>
+              </div>
+              <div class="swatch-chip" onclick="selectSwatch('satin-purple', this)">
+                <div class="swatch-circle" style="background: #7832a0;"></div>
+                <span class="swatch-label">Satin Purple</span>
+              </div>
+              <div class="swatch-chip" onclick="selectSwatch('pearl-white', this)">
+                <div class="swatch-circle" style="background: #f5f5fa;"></div>
+                <span class="swatch-label">Pearl White</span>
+              </div>
+              <div class="swatch-chip" onclick="selectSwatch('satin-black', this)">
+                <div class="swatch-circle" style="background: #1e1e1e;"></div>
+                <span class="swatch-label">Satin Black</span>
+              </div>
+              <div class="swatch-chip" onclick="selectSwatch('custom', this)">
+                <div class="swatch-circle" style="background: linear-gradient(135deg, #0070f3, #f59e0b);"></div>
+                <span class="swatch-label">Custom ✨</span>
+              </div>
+            </div>
+          </div>
+          <div class="inline-custom-wrap" id="customColorWrap">
+            <label for="customColorInput">Custom Color Request</label>
+            <div class="input-icon-container">
+              <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="13.5" cy="6.5" r=".5" fill="currentColor"></circle><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"></circle><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"></circle><circle cx="6.5" cy="12.5" r=".5" fill="currentColor"></circle><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.563-2.512 5.563-5.563C22 6.5 17.5 2 12 2z"></path></svg>
+              <input type="text" id="customColorInput" class="form-input" placeholder="Enter custom color request">
+              <button type="button" class="inline-cancel-btn" onclick="resetColor()" aria-label="Cancel custom color">&times;</button>
+            </div>
+          </div>
+
+          <!-- Tier Selection using Semantic Buttons -->
+          <div class="tier-selection-grid" role="radiogroup" aria-label="Registration Tiers">
+            <button type="button" class="tier-card active-free" id="cardWaitlist" role="radio" aria-checked="true" onclick="setAccessLevel('waitlist')">
+              <div class="tier-card-radio" aria-hidden="true"></div>
+              <div class="tier-card-content">
+                <div class="tier-card-title">Free Waitlist ($0)</div>
+                <div class="tier-card-sub">Launch notifications only. No commitment.</div>
+              </div>
+            </button>
+            <button type="button" class="tier-card" id="cardRider" role="radio" aria-checked="false" onclick="setAccessLevel('rider')">
+              <div class="tier-card-radio" aria-hidden="true"></div>
+              <div class="tier-card-content">
+                <div class="tier-card-title">Rider Pre-Order ($25)</div>
+                <div class="tier-card-sub">Priority booking, merch pack & Founder Wall badge.</div>
+              </div>
+            </button>
+            <button type="button" class="tier-card" id="cardCommunity" role="radio" aria-checked="false" onclick="setAccessLevel('community')">
+              <div class="tier-card-radio" aria-hidden="true"></div>
+              <div class="tier-card-content">
+                <div class="tier-card-title">Community Backer ($25)</div>
+                <div class="tier-card-sub">Support the shop & claim your spot on the wall.</div>
+              </div>
+            </button>
+          </div>
+
+          <div class="perks-drawer active-gold" id="riderPerksBlock">
+            <ul class="perks-list">
+              <li class="perk-item"><span class="perk-bullet" aria-hidden="true">✦</span><span><strong>50% Pre-Order ($25):</strong> Remainder due post-install.</span></li>
+              <li class="perk-item"><span class="perk-bullet" aria-hidden="true">✦</span><span><strong>Priority Booking Access:</strong> First calendar choice ahead of public.</span></li>
+              <li class="perk-item"><span class="perk-bullet" aria-hidden="true">✦</span><span><strong>Signature Merch:</strong> Reflective emblem & custom slap sticker.</span></li>
+              <li class="perk-item"><span class="perk-bullet" aria-hidden="true">✦</span><span><strong>Wall Badge:</strong> Permanent distinguished placement on the Founder Wall.</span></li>
+            </ul>
+            <div class="wall-privacy-toggle" id="wallPrivacyToggleRider" onclick="togglePrivacy()" role="checkbox" aria-checked="false" tabindex="0">
+              <div class="privacy-check" id="privacyCheckRider" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+              <span>Display as Anonymous on Wall</span>
+            </div>
+          </div>
+
+          <div class="perks-drawer active-gold" id="communityPerksBlock">
+            <p style="font-size:0.75rem; color:#cbd5e1; margin-bottom:8px; font-weight:700;">Select support amount:</p>
+            <div class="amount-pills-row" role="group" aria-label="Support Amounts">
+              <button type="button" class="amount-pill" onclick="setCommunityTier(10)">$10</button>
+              <button type="button" class="amount-pill active" onclick="setCommunityTier(25)">$25</button>
+              <button type="button" class="amount-pill" onclick="setCommunityTier(50)">$50</button>
+              <button type="button" class="amount-pill" onclick="setCommunityTier('other')">Other</button>
+            </div>
+            <div class="inline-custom-wrap" id="customAmtWrap" style="margin-bottom:8px;">
+              <label for="customAmountInput">Custom Support Amount (Min $5)</label>
+              <input type="number" id="customAmountInput" class="form-input" placeholder="Enter amount (min $5)" min="5" oninput="setCustomAmount(this.value)">
+            </div>
+            <ul class="perks-list">
+              <li class="perk-item"><span class="perk-bullet" aria-hidden="true">✦</span><span id="communityPerkDesc"><strong>Silver Founder Badge:</strong> Distinguished Silver placement on the Founder Wall.</span></li>
+            </ul>
+            <div class="wall-privacy-toggle" id="wallPrivacyToggleComm" onclick="togglePrivacy()" role="checkbox" aria-checked="false" tabindex="0">
+              <div class="privacy-check" id="privacyCheckComm" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+              <span>Display as Anonymous on Wall</span>
+            </div>
+          </div>
+
+          <div class="premium-material-tag">Engineered with automotive-grade 3M™, Avery Dennison® & Oralite® reflective vinyl</div>
+
+          <button type="submit" id="submitBtn" class="submit-cta-btn">
+            <span id="btnText">SECURE FREE SPOT</span> ›
+          </button>
+
+          <div id="statusToast" class="status-toast" role="status"></div>
+          <p class="footer-guarantee" id="footerGuarantee">FREE EARLY ACCESS • ZERO COMMITMENT<br>WRAPPED WITH ❤️ IN JAX, FL</p>
+        </form>
+      </div>
+
+      <!-- SUCCESS CONFIRMATION VIEW -->
+      <div id="successView" class="success-view">
+        <h2 id="successTitle">You're In. Spot Locked.</h2>
+        <p id="successDesc">Your registration has been logged and confirmation details have been dispatched to your inbox.</p>
+      </div>
+    </section>
+
+    <footer class="app-footer">
+      <div class="footer-links">
+        <a href="mailto:support@baselayerwraps.com">Contact Support</a>
+        <a href="terms.html">Terms of Pre-Order</a>
+        <a href="privacy.html">Privacy Policy</a>
+      </div>
+      <div class="footer-copyright">&copy; 2026 BaseLayer Wraps. Jacksonville, Florida. All rights reserved.</div>
+    </footer>
+
+    <!-- Founder Wall Modal with ARIA role=dialog, focus trap & Esc listener -->
+    <div class="wall-modal-overlay" id="founderWallModal" onclick="closeFounderWallModal(event)" aria-hidden="true">
+      <div class="wall-modal-card" role="dialog" aria-modal="true" aria-labelledby="modalTitle" tabindex="-1" onclick="event.stopPropagation()">
+        <div class="wall-modal-head">
+          <div class="wall-title" id="modalTitle">BASELAYER <span>FOUNDER WALL</span></div>
+          <button type="button" class="wall-close-btn" onclick="closeFounderWallModal()" aria-label="Close dialog">&times;</button>
+        </div>
+        <div class="wall-modal-body" id="wallBackersList"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function getEl(id) { return document.getElementById(id); }
+
+    // Unique Order ID Generator
+    function generateOrderId() {
+      var d = new Date();
+      var dateStr = d.getFullYear() + ('0'+(d.getMonth()+1)).slice(-2) + ('0'+d.getDate()).slice(-2);
+      var randStr = Math.floor(1000 + Math.random() * 9000);
+      return 'BLW-' + dateStr + '-' + randStr;
+    }
+
+    // ============================================================================
+    // 1. SAFE CANVAS RENDERER 
+    // ============================================================================
+    var COLORS = { 'perfect-blue': [0, 112, 243], 'smoldering-red': [210, 40, 40], 'apple-green': [100, 180, 60], 'canyon-copper': [190, 90, 40], 'satin-purple': [120, 50, 160], 'pearl-white': [245, 245, 250], 'satin-black': [30, 30, 30] };
+    var bImg = new Image(); var sImg = new Image();
+    bImg.src = "assets/battery-01.png"; sImg.src = "assets/scooter-01.png";
+    bImg.onload = function() { renderCanvas('battery', 'perfect-blue'); }; sImg.onload = function() { renderCanvas('scooter', 'smoldering-red'); };
+
+    function renderCanvas(type, forceColor) {
+      try {
+        var isBat = type === 'battery'; var img = isBat ? bImg : sImg;
+        if (!img.complete || img.naturalWidth === 0) return;
+        var cvs = getEl(isBat ? 'batteryCanvas' : 'scooterCanvas'); if (!cvs) return;
+        var ctx = cvs.getContext('2d'); var dpr = window.devicePixelRatio || 2;
+        var w = isBat ? 320 : 215; var h = isBat ? 200 : 780;
+        cvs.width = w * dpr; cvs.height = h * dpr; ctx.scale(dpr, dpr); ctx.clearRect(0,0,w,h);
+        var dx = 0, dy = 0, dw = w, dh = h;
+        if (isBat) { var aspect = img.width / img.height; if (aspect > w/h) { dh = w/aspect; dy = (h-dh)/2; } else { dw = h*aspect; dx = (w-dw)/2; } ctx.drawImage(img, dx, dy, dw, dh); } 
+        else { var sw = img.width * 0.48, sh = img.height, aspect2 = sw/sh; dh = h * 1.05; dw = dh * aspect2; dx = w - dw + 18; dy = -10; ctx.drawImage(img, 0, 0, sw, sh, dx, dy, dw, dh); }
+        var fallback = getEl(isBat ? 'batteryImgFallback' : 'scooterImgFallback'); if (fallback) fallback.style.opacity = '0';
+        var colorKey = forceColor || getEl('preferredColor').value; var target = COLORS[colorKey]; if (!target) return;
+        var imgData = ctx.getImageData(0, 0, cvs.width, cvs.height); var d = imgData.data;
+        for (var i = 0; i < d.length; i += 4) {
+          var r = d[i], g = d[i+1], b = d[i+2]; if (d[i+3] === 0) continue;
+          if (isBat) {
+            var min = Math.min(r, g, b), max = Math.max(r, g, b);
+            if ((max - min) < 30 && min > 145) { if (min >= 220) { d[i+3] = 0; continue; } else { d[i+3] = Math.round(d[i+3] * ((220 - min)/75)); } }
+            if ((b > 75 && b > r*1.2 && b > g*1.1) || (g > 60 && g > r*1.22 && g > b*1.22)) { var lum = (0.299*r + 0.587*g + 0.114*b) / 255; d[i]=Math.min(255, target[0]*lum*1.3); d[i+1]=Math.min(255, target[1]*lum*1.3); d[i+2]=Math.min(255, target[2]*lum*1.3); }
+          } else {
+            if (g > 65 && g > r*1.25 && g > b*1.25) { var lum2 = (0.299*r + 0.587*g + 0.114*b) / 255; d[i]=Math.min(255, target[0]*lum2*1.3); d[i+1]=Math.min(255, target[1]*lum2*1.3); d[i+2]=Math.min(255, target[2]*lum2*1.3); }
+          }
+        }
+        ctx.putImageData(imgData, 0, 0);
+      } catch(err) { console.warn('Canvas pixel manipulation bypassed.'); }
+    }
+
+    // ============================================================================
+    // 2. FORM INLINE SWAPPERS & TIER HANDLERS
+    // ============================================================================
+    function handleHardwareNameChange() {
+      var v = getEl('rideType').value;
+      if (v === 'other') { getEl('rideSelectWrap').style.display = 'none'; getEl('customRideWrap').style.display = 'block'; getEl('customRideInput').focus(); return; }
+      if (v === 'scooter') selectSwatch('smoldering-red', document.querySelector('.swatch-chip:nth-child(2)')); 
+      else if (v === 'battery') selectSwatch('perfect-blue', document.querySelector('.swatch-chip:first-child'));
+      if(v === 'battery') renderCanvas('battery'); else renderCanvas('scooter');
+    }
+    function resetHardware() { getEl('rideType').value = 'battery'; getEl('rideSelectWrap').style.display = 'block'; getEl('customRideWrap').style.display = 'none'; getEl('customRideInput').value = ''; selectSwatch('perfect-blue', document.querySelector('.swatch-chip:first-child')); renderCanvas('battery'); }
+    
+    function selectSwatch(colorKey, chipEl) {
+      getEl('preferredColor').value = colorKey;
+      var chips = document.querySelectorAll('.swatch-chip');
+      for (var i = 0; i < chips.length; i++) { chips[i].classList.remove('active'); }
+      if (chipEl) chipEl.classList.add('active');
+
+      if (colorKey === 'custom') {
+        getEl('customColorWrap').style.display = 'block';
+        getEl('customColorInput').focus();
+        return;
+      } else {
+        getEl('customColorWrap').style.display = 'none';
+        getEl('customColorInput').value = '';
+      }
+      var r = getEl('rideType').value; if (r === 'battery') renderCanvas('battery'); else renderCanvas('scooter');
+    }
+    function resetColor() { selectSwatch('perfect-blue', document.querySelector('.swatch-chip:first-child')); }
+
+    var currentTier = 'waitlist'; var communityAmt = 25; var isAnon = false;
+
+    function setAccessLevel(tier) {
+      currentTier = tier;
+      var cWaitlist = getEl('cardWaitlist'), cRider = getEl('cardRider'), cComm = getEl('cardCommunity');
+      cWaitlist.classList.remove('active-free'); cRider.classList.remove('active'); cComm.classList.remove('active');
+      cWaitlist.setAttribute('aria-checked', 'false'); cRider.setAttribute('aria-checked', 'false'); cComm.setAttribute('aria-checked', 'false');
+
+      getEl('riderPerksBlock').style.display = 'none'; getEl('communityPerksBlock').style.display = 'none';
+      var btn = getEl('submitBtn'), footer = getEl('footerGuarantee');
+      if (tier === 'waitlist') { 
+        cWaitlist.classList.add('active-free'); cWaitlist.setAttribute('aria-checked', 'true');
+        btn.className = 'submit-cta-btn'; getEl('btnText').textContent = 'SECURE FREE SPOT'; 
+        footer.innerHTML = 'FREE EARLY ACCESS • ZERO COMMITMENT<br>WRAPPED WITH ❤️ IN JAX, FL'; 
+      } 
+      else if (tier === 'rider') { 
+        cRider.classList.add('active'); cRider.setAttribute('aria-checked', 'true');
+        getEl('riderPerksBlock').style.display = 'block'; btn.className = 'submit-cta-btn founder-mode'; 
+        getEl('btnText').textContent = 'LOCK RIDER PRE-ORDER ($25)'; 
+        footer.innerHTML = '100% REFUNDABLE • BALANCE DUE POST-INSTALL<br>WRAPPED WITH ❤️ IN JAX, FL'; 
+      } 
+      else if (tier === 'community') { 
+        cComm.classList.add('active'); cComm.setAttribute('aria-checked', 'true');
+        getEl('communityPerksBlock').style.display = 'block'; btn.className = 'submit-cta-btn founder-mode'; 
+        getEl('btnText').textContent = 'SECURE FOUNDER SPOT ($' + communityAmt + ')'; 
+        footer.innerHTML = 'COMMUNITY FOUNDER • FOUNDER WALL BADGE<br>WRAPPED WITH ❤️ IN JAX, FL'; 
+      }
+    }
+
+    function setCommunityTier(amt) {
+      var pills = document.querySelectorAll('.amount-pill'); for (var i=0; i<pills.length; i++) { pills[i].classList.remove('active'); }
+      var wrap = getEl('customAmtWrap'), input = getEl('customAmountInput');
+      if (amt === 'other') { pills[3].classList.add('active'); wrap.style.display = 'block'; input.focus(); communityAmt = parseFloat(input.value) || 0; } 
+      else { 
+        wrap.style.display = 'none'; 
+        if (amt === 10) pills[0].classList.add('active'); 
+        if (amt === 25) pills[1].classList.add('active'); 
+        if (amt === 50) pills[2].classList.add('active'); 
+        communityAmt = amt; 
+      }
+      updateCommunityPerkCopy();
+    }
+    function setCustomAmount(val) { communityAmt = parseFloat(val) || 0; updateCommunityPerkCopy(); }
+    function updateCommunityPerkCopy() {
+      var desc = getEl('communityPerkDesc');
+      if (communityAmt >= 100) desc.innerHTML = '<strong>Diamond VIP Badge:</strong> Elite Diamond placement on the Founder Wall.';
+      else if (communityAmt >= 50) desc.innerHTML = '<strong>Gold Founder Badge:</strong> Premium Gold placement on the Founder Wall.';
+      else if (communityAmt >= 25) desc.innerHTML = '<strong>Silver Founder Badge:</strong> Distinguished Silver placement on the Founder Wall.';
+      else desc.innerHTML = '<strong>Bronze Founder Badge:</strong> Permanent Bronze credit on the Founder Wall.';
+      if (currentTier === 'community') { getEl('btnText').textContent = 'SECURE FOUNDER SPOT ($' + communityAmt + ')'; }
+    }
+    function togglePrivacy() {
+      isAnon = !isAnon;
+      var togRider = getEl('wallPrivacyToggleRider');
+      var togComm = getEl('wallPrivacyToggleComm');
+      if (isAnon) { 
+        togRider.classList.add('active'); togRider.setAttribute('aria-checked', 'true');
+        togComm.classList.add('active'); togComm.setAttribute('aria-checked', 'true');
+      } else { 
+        togRider.classList.remove('active'); togRider.setAttribute('aria-checked', 'false');
+        togComm.classList.remove('active'); togComm.setAttribute('aria-checked', 'false');
+      }
+    }
+
+    // ============================================================================
+    // 3. DYNAMIC FOUNDER WALL (API FETCH WITH ERROR HANDLING) & RETURN PARAMETER
+    // ============================================================================
+    var APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzxC33_97ZReOY-XkYsSrvQhreSoenro_w-vpPqdjMu2xumklP8PRT5IA5UTeMIszbE/exec';
+    
+    var SQUARE_RIDER_URL = 'https://square.link/u/m4q57GKP'; 
+    var SQUARE_COMM_10_URL = 'https://square.link/u/COJXTzcL'; 
+    var SQUARE_COMM_25_URL = 'https://square.link/u/mljL7Aeo'; 
+    var SQUARE_COMM_50_URL = 'https://square.link/u/qbwCbOxZ'; 
+    var SQUARE_COMM_OTHER_URL = 'https://square.link/u/xgxNLyOs'; 
+
+    var WALL_DATA = [];
+    var tIdx = 0;
+
+    window.addEventListener('DOMContentLoaded', function() {
+      var urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.get('status') === 'success') {
+        getEl('formContainer').style.display = 'none';
+        var successView = getEl('successView');
+        successView.style.display = 'block';
+        var orderIdParam = urlParams.get('order_id') || 'N/A';
+        var returnTier = urlParams.get('tier');
+        if (returnTier === 'community') {
+          getEl('successTitle').textContent = 'Payment Received — Confirming Now';
+          getEl('successDesc').innerHTML = 'Order ID: <strong>' + orderIdParam + '</strong><br>Payment received via Square. We are verifying funds and confirming your Community Founder placement.';
+        } else {
+          getEl('successTitle').textContent = 'Payment Received — Confirming Now';
+          getEl('successDesc').innerHTML = 'Order ID: <strong>' + orderIdParam + '</strong><br>Payment received via Square. We are verifying your pre-order and locking your spot on the calendar.';
+        }
+      }
+
+      // Fetch Founder Wall with robust error handling
+      fetch(APPS_SCRIPT_URL)
+        .then(function(res) { 
+          if (!res.ok) throw new Error('Network response error');
+          return res.json(); 
+        })
+        .then(function(data) {
+          if (data && data.length > 0) { 
+            WALL_DATA = data; 
+            getEl('tickerText').innerHTML = '<strong>' + escapeHtml(WALL_DATA[0].name) + '</strong> • ' + escapeHtml(WALL_DATA[0].type);
+          } else {
+            WALL_DATA = [{ name: 'BaseLayer', type: 'Queue is Open. Claim your spot.', amount: 0, badge: 'READY', color: 'badge-silver', initial: 'B' }];
+            getEl('tickerText').innerHTML = '<strong>Queue is Open.</strong> • Claim the first spot.';
+          }
+        })
+        .catch(function(err) {
+          console.warn('Founder wall fetch failed:', err);
+          getEl('tickerText').innerHTML = '<strong>Queue is Open.</strong> • Claim the first spot.';
+        });
+    });
+
+    setInterval(function() {
+      if (WALL_DATA.length > 0) {
+        tIdx = (tIdx + 1) % WALL_DATA.length;
+        var b = WALL_DATA[tIdx];
+        getEl('tickerText').innerHTML = '<strong>' + escapeHtml(b.name) + '</strong> • ' + escapeHtml(b.type);
+      }
+    }, 4500);
+
+    function escapeHtml(str) {
+      if (!str) return '';
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+    }
+
+    function openFounderWallModal() {
+      var htmlStr = '';
+      if (WALL_DATA.length === 0 || (WALL_DATA.length === 1 && WALL_DATA[0].amount === 0)) {
+        htmlStr = '<div style="text-align:center; color:#94a3b8; padding:20px; font-size:0.85rem; font-weight:700;">No verified backers on the wall yet.<br>Be the first.</div>';
+      } else {
+        for (var i = 0; i < WALL_DATA.length; i++) {
+          var f = WALL_DATA[i];
+          htmlStr += '<div class="wall-backer-card">' +
+                       '<div class="backer-left"><div class="backer-avatar ' + escapeHtml(f.color) + '">' + escapeHtml(f.initial) + '</div>' +
+                       '<div><div class="backer-name">' + escapeHtml(f.name) + '</div><div class="backer-tier-tag">' + escapeHtml(f.badge) + '</div></div></div>' +
+                       '<span class="backer-badge-pill ' + escapeHtml(f.color) + '">$' + escapeHtml(f.amount) + '</span>' +
+                     '</div>';
+        }
+      }
+      getEl('wallBackersList').innerHTML = htmlStr;
+      var modal = getEl('founderWallModal');
+      modal.classList.add('open');
+      modal.setAttribute('aria-hidden', 'false');
+      getEl('founderWallModal').querySelector('.wall-modal-card').focus();
+    }
+
+    function closeFounderWallModal(e) {
+      if (!e || e.target === getEl('founderWallModal') || (e.target.className && e.target.className.indexOf('wall-close-btn') > -1)) { 
+        var modal = getEl('founderWallModal');
+        modal.classList.remove('open'); 
+        modal.setAttribute('aria-hidden', 'true');
+      }
+    }
+
+    // Esc key listener & focus trap for modal
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        closeFounderWallModal();
+      }
+    });
+
+    // ============================================================================
+    // 4. SUBMISSION ENGINE WITH PENDING ACTIONS & ERROR RESILIENCE
+    // ============================================================================
+    function processSubmission(e) {
+      e.preventDefault();
+      var btn = getEl('submitBtn'); 
+      var toast = getEl('statusToast');
+      btn.disabled = true; 
+      btn.style.opacity = '0.7';
+
+      var rawName = (getEl('waitlistName').value || '').trim();
+      var displayName = 'Anonymous';
+      if (!isAnon && rawName) { var parts = rawName.split(' '); displayName = parts[0]; if (parts.length > 1 && parts[1].length > 0) { displayName += ' ' + parts[1].charAt(0) + '.'; } }
+
+      var rideVal = getEl('rideType').value === 'other' ? getEl('customRideInput').value : getEl('rideType').value;
+      var colorVal = getEl('preferredColor').value === 'custom' ? getEl('customColorInput').value : getEl('preferredColor').value;
+      var chargeAmt = (currentTier === 'rider') ? 25 : (currentTier === 'community' ? communityAmt : 0);
+      
+      // Generate Unique Order ID
+      var orderId = generateOrderId();
+
+      // Action tags with PENDING status for paid tiers
+      var actionTag = currentTier === 'waitlist' ? 'SUBMIT_FREE_WAITLIST' : (currentTier === 'rider' ? 'SUBMIT_FOUNDER_PREORDER_PENDING' : 'SUBMIT_COMMUNITY_FOUNDER_PENDING');
+
+      var payload = { 
+        action: actionTag, 
+        orderId: orderId,
+        customerName: rawName || 'Applicant', 
+        displayName: displayName, 
+        customerEmail: getEl('waitlistEmail').value.trim(), 
+        rideInfo: rideVal, 
+        finishSpec: colorVal, 
+        supportAmount: chargeAmt, 
+        isAnonymous: isAnon 
+      };
+
+      fetch(APPS_SCRIPT_URL, { 
+        method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(payload) 
+      }).then(function() {
+        if (currentTier === 'rider') {
+          btn.innerHTML = 'REDIRECTING TO SQUARE...';
+          var currentDomain = window.location.origin + window.location.pathname;
+          var redirectUrl = SQUARE_RIDER_URL + (SQUARE_RIDER_URL.includes('?') ? '&' : '?') + 'redirect_url=' + encodeURIComponent(currentDomain + '?status=success&tier=rider&order_id=' + orderId);
+          setTimeout(function() { window.location.href = redirectUrl; }, 600);
+        } else if (currentTier === 'community') {
+          var targetSquareUrl = SQUARE_COMM_OTHER_URL;
+          if (communityAmt === 10) targetSquareUrl = SQUARE_COMM_10_URL;
+          else if (communityAmt === 25) targetSquareUrl = SQUARE_COMM_25_URL;
+          else if (communityAmt === 50) targetSquareUrl = SQUARE_COMM_50_URL;
+
+          btn.innerHTML = 'REDIRECTING TO SQUARE...';
+          var currentDomain = window.location.origin + window.location.pathname;
+          var redirectUrl = targetSquareUrl + (targetSquareUrl.includes('?') ? '&' : '?') + 'redirect_url=' + encodeURIComponent(currentDomain + '?status=success&tier=community&order_id=' + orderId);
+          setTimeout(function() { window.location.href = redirectUrl; }, 600);
+        } else {
+          getEl('formContainer').style.display = 'none';
+          var successView = getEl('successView');
+          successView.style.display = 'block';
+          getEl('successTitle').textContent = 'You’re on the list';
+          getEl('successDesc').innerHTML = 'We’ll notify <strong>' + escapeHtml(payload.customerEmail) + '</strong> the moment our booking window opens.';
+        }
+      }).catch(function(err) {
+        console.warn('Submission network error:', err);
+        toast.style.display = 'block';
+        toast.style.background = 'rgba(220, 38, 38, 0.15)';
+        toast.style.border = '1px solid rgba(220, 38, 38, 0.4)';
+        toast.style.color = '#ef4444';
+        toast.innerHTML = 'Submission failed. Please check your connection and try again.';
+        btn.disabled = false;
+        btn.style.opacity = '1';
+        btn.innerHTML = 'SECURE SPOT ›';
+      });
+    }
+  </script>
+</body>
+</html>
