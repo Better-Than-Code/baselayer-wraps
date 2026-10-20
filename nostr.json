@@ -1,0 +1,15 @@
+{
+  "names": {
+    "_": "dfa090bcf3b98c7634f1ec56d959550b71946ae8a0d42125f448c5c7210aa393",
+    "baselayerwraps": "dfa090bcf3b98c7634f1ec56d959550b71946ae8a0d42125f448c5c7210aa393",
+    "founder": "dfa090bcf3b98c7634f1ec56d959550b71946ae8a0d42125f448c5c7210aa393"
+  },
+  "relays": {
+    "dfa090bcf3b98c7634f1ec56d959550b71946ae8a0d42125f448c5c7210aa393": [
+      "wss://relay.damus.io",
+      "wss://nos.lol",
+      "wss://relay.primal.net",
+      "wss://relay.snort.social"
+    ]
+  }
+}
